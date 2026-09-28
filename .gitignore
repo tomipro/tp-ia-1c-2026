@@ -1,0 +1,17 @@
+# --- Entorno virtual (específico de cada máquina) ---
+venv310/
+__pycache__/
+*.pyc
+
+# --- Repos de terceros (los clona setup.sh) ---
+unitree_mujoco/
+unitree_sdk2/
+unitree_sdk2_python/
+
+# --- Gestos locales (no se suben) ---
+tp_g1/local_extras.py
+tp_g1/poses/wank*.png
+
+# --- Grabaciones y basura del sistema ---
+*.mov
+.DS_Store
