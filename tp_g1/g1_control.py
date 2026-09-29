@@ -121,19 +121,17 @@ def pose_for(demo, t):
         q[[L_ELBOW, R_ELBOW]] = 0.8
 
     elif demo == "sixseven":
-        # Meme "6 7": brazos doblados al frente, palmas enfrentadas, las manos
+        # Meme "6 7": manos ARRIBA a la altura de la cara, palmas enfrentadas,
         # suben y bajan alternadas (balancín) mientras se dice "six... seven".
         s = math.sin(2 * math.pi * 1.6 * t)
-        q[L_SHOULDER_PITCH] = -1.15 - 0.35 * s
-        q[R_SHOULDER_PITCH] = -1.15 + 0.35 * s
-        q[L_SHOULDER_ROLL] = -0.05
-        q[R_SHOULDER_ROLL] = 0.05
-        q[L_ELBOW] = 1.85 + 0.15 * s
-        q[R_ELBOW] = 1.85 - 0.15 * s
-        q[L_WRIST_ROLL] = 1.4
-        q[R_WRIST_ROLL] = -1.4
-        q[L_WRIST_PITCH] = 0.2
-        q[R_WRIST_PITCH] = 0.2
+        q[L_SHOULDER_PITCH] = -1.45 - 0.22 * s
+        q[R_SHOULDER_PITCH] = -1.45 + 0.22 * s
+        q[L_SHOULDER_ROLL] = -0.10
+        q[R_SHOULDER_ROLL] = 0.10
+        q[L_ELBOW] = 1.30 + 0.12 * s
+        q[R_ELBOW] = 1.30 - 0.12 * s
+        q[L_WRIST_ROLL] = 1.40
+        q[R_WRIST_ROLL] = -1.40
 
     return q
 
