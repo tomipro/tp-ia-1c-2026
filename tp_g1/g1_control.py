@@ -9,13 +9,14 @@ Uso:
     python g1_control.py sim [demo]           # simulador (dominio 1, iface "lo0")
     python g1_control.py real <iface> [demo]  # robot real (dominio 0, iface de red)
 
-    demo: demo | stand | wave | squat | march | twist   (default: demo)
-          - demo  : recorre todas las rutinas en secuencia (y repite)
-          - stand : mantiene la postura de parado
-          - wave  : saluda con el brazo derecho
-          - squat : sentadillas suaves
-          - march : marcha en el lugar
-          - twist : gira el torso (waist yaw)
+    demo: demo | stand | wave | squat | march | twist | sixseven   (default: demo)
+          - demo     : recorre todas las rutinas en secuencia (y repite)
+          - stand    : mantiene la postura de parado
+          - wave     : saluda con el brazo derecho
+          - squat    : sentadillas suaves
+          - march    : marcha en el lugar
+          - twist    : gira el torso (waist yaw)
+          - sixseven : meme "6 7" (manos al frente subiendo y bajando)
 
     Gestos locales extra: si existe el archivo tp_g1/local_extras.py (no
     versionado), sus demos se agregan automaticamente (ver POSE_EXTRAS).
@@ -119,12 +120,27 @@ def pose_for(demo, t):
         q[[L_SHOULDER_PITCH, R_SHOULDER_PITCH]] = 0.3
         q[[L_ELBOW, R_ELBOW]] = 0.8
 
+    elif demo == "sixseven":
+        # Meme "6 7": brazos doblados al frente, palmas enfrentadas, las manos
+        # suben y bajan alternadas (balancín) mientras se dice "six... seven".
+        s = math.sin(2 * math.pi * 1.6 * t)
+        q[L_SHOULDER_PITCH] = -1.15 - 0.35 * s
+        q[R_SHOULDER_PITCH] = -1.15 + 0.35 * s
+        q[L_SHOULDER_ROLL] = -0.05
+        q[R_SHOULDER_ROLL] = 0.05
+        q[L_ELBOW] = 1.85 + 0.15 * s
+        q[R_ELBOW] = 1.85 - 0.15 * s
+        q[L_WRIST_ROLL] = 1.4
+        q[R_WRIST_ROLL] = -1.4
+        q[L_WRIST_PITCH] = 0.2
+        q[R_WRIST_PITCH] = 0.2
+
     return q
 
 
 # Secuencia para la demo combinada: (nombre, duracion)
 DEMO_SEQUENCE = [("stand", 2.0), ("wave", 5.0), ("squat", 8.0),
-                 ("march", 8.0), ("twist", 5.0), ("stand", 2.0)]
+                 ("march", 8.0), ("twist", 5.0), ("sixseven", 6.0), ("stand", 2.0)]
 
 
 def sequence_pose(t):

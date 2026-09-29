@@ -14,8 +14,8 @@ usa el mismo protocolo de comunicación (DDS) que el G1 físico.
 - Simulador MuJoCo abriendo el **G1 de 29 DOF** en macOS (Apple Silicon).
 - Controlador de bajo nivel en Python que envía comandos de motor por DDS
   (`rt/lowcmd`) y recibe el estado (`rt/lowstate`).
-- Varias **demos**: parado, saludar, sentadillas, marcha en el lugar y giro
-  de torso. También una demo combinada que recorre todo.
+- Varias **demos**: parado, saludar, sentadillas, marcha en el lugar, giro de
+  torso y el meme **"6 7"**. También una demo combinada que recorre todo.
 - Código **sim → real**: el mismo controlador funciona en el simulador y en
   el robot físico cambiando solo la interfaz de red.
 
@@ -95,7 +95,7 @@ bash tp_g1/run_control.sh stand      # mantener parado
 Cortar la terminal 2 con `Ctrl+C` (el robot queda "suelto" y se desploma
 por gravedad, es normal).
 
-Demos disponibles: `demo | stand | wave | squat | march | twist`.
+Demos disponibles: `demo | stand | wave | squat | march | twist | sixseven`.
 
 > Los gestos **locales** opcionales (archivo `tp_g1/local_extras.py`, que no se
 > versiona) se agregan automáticamente a la lista de demos.
